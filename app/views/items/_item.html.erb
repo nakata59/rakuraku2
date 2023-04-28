@@ -1,0 +1,7 @@
+<% @items.each do |item| %>
+<div class="list-group">
+ <%= image_tag item.small_image_url %>
+ <%= item.item_url %>
+ <%= item.isbn %>
+</div>
+<% end %>

@@ -1,0 +1,42 @@
+<style>
+  img{
+    width:10vw;
+  }
+  .shelf{
+    width:40vw;
+    height:40vw;
+    display: flex;
+    flex-wrap:wrap;
+    background-image: url(<%= asset_path 'maple_center.png' %>);
+    background-size: auto 19vw;
+    background-color: #F0D9C5;
+  }
+  .item{
+    width:11vw;
+    height:15vw;
+    margin-top:1.8vw;
+    margin-left:auto;
+    margin-right:1vw;
+    padding-bottom:0vw;
+  }
+</style>
+
+<div>
+  <%= @post.title %>
+</div>
+<div>
+  <%= @post.body %>
+</div>
+<div class="shelf">
+  <% if @post.books != nil %>
+    <% @items.each do |items| %>
+      <% items.each do |item| %>
+        <div class="item">
+          <%= image_tag item.medium_image_url %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+

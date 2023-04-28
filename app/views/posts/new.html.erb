@@ -1,0 +1,78 @@
+<%= form_with model: @post, id: "first", local: true do |f| %>
+  <div class="form-group">    
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+  <div class="form-group">    
+    <%= f.label :body %>
+    <%= f.text_field :body, class: 'form-control' %>
+  </div>
+  <div class="form-group">    
+    <%= f.label :isbn %>
+    <%= f.text_field :isbn, class: 'form-control', id:'isbn0', name: 'input1' %>
+  </div>
+  <div class="form-group">    
+    <%= f.label :isbn %>
+    <%= f.text_field :isbn, class: 'form-control', id:'isbn1', name: 'input3' %>
+  </div>
+  <div class="form-group">    
+    <%= f.label :isbn %>
+    <%= f.text_field :isbn, class: 'form-control', id:'isbn2', name: 'input4' %>
+  </div>
+  <div class="form-group">    
+    <%= f.label :isbn %>
+    <%= f.text_field :isbn, class: 'form-control', id:'isbn3', name: 'input5' %>
+  </div>
+  <div class="form-group">    
+    <%= f.label :isbn %>
+    <%= f.text_field :isbn, class: 'form-control', id:'isbn4', name: 'input6' %>
+  </div>
+  <div class="form-group">    
+    <%= f.label :isbn %>
+    <%= f.text_field :isbn, class: 'form-control', id:'isbn5', name: 'input7' %>
+  </div>
+  <%= f.submit class: 'btn btn-primary'  %>
+<% end %>
+<% if @isbn_a != nil %>
+  <p id="isbn_c" style="display:none;"><%= @isbn_a %></p>
+<% end %>
+<% if @isbn_b != nil %>
+  <p id="isbn_12"><%= @isbn_b %></p>
+<% end %>
+<h1>製品名を入力して検索</h1>
+<div class="search-box">
+    <%= form_with url: request.url, method: :get, remote: true do |f| %>
+    <div class="form-group">
+        <%= f.hidden_field :dummy, id:'isbn', value: "" %>
+        <%= f.hidden_field :dummy2, id:'isbnb', value: "" %>
+        <%= f.text_field :keyword, value: params[:keyword], class: "form-control" %>
+        <%= f.submit '製品名を検索', class: "form-control btn btn-success",  onclick: "buttClick()" %>
+    </div>
+    <% end %>
+<% if @items.present? %>
+  <%= render 'items/item' %>
+<% end %>
+
+<script>
+window.onload = function() {
+  const input2 = document.getElementById('isbn_c').textContent;
+  const isbnInput = document.getElementById('isbn0');
+  isbnInput.value = input2;
+  const input3 = document.getElementById('isbn_12').textContent;
+  const isbnInput3 = document.getElementById('isbn1');
+  isbnInput3.value = input3;
+}
+
+function buttClick(){
+  alert('ページの読み込みが完了しました！');
+  const form = document.getElementById('first');
+  const input1 = form.elements['input1'].value;
+  alert(input1);
+  const input2 = form.elements['input3'].value;
+  const isbnInput = document.getElementById('isbn');
+  isbnInput.value = input1;
+  alert(input2);
+  const isbnInput2 = document.getElementById('isbnb');
+  isbnInput2.value = input2;
+}
+</script>
